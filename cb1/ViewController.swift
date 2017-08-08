@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, NameDel{
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,15 @@ class ViewController: UIViewController{
         myLable?.text = m as! String ?? "hello"
     }
     
-
+    func sendDel(data: String?) {
+        myLable?.text = data ?? "hello del"
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sendSeg" {
+            var s = segue.destination as? SenderViewController
+            s?.del = self
+        }
+    }
 
     @IBOutlet weak var myLable: UILabel?
     @IBAction func showActionSheet(_ sender: UIButton) {

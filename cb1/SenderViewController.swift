@@ -9,7 +9,7 @@
 import UIKit
 
 protocol NameDel {
-    func send(data:String)
+    func sendDel(data:String?)
 }
 
 class SenderViewController: UIViewController {
@@ -24,17 +24,16 @@ class SenderViewController: UIViewController {
 
     @IBAction func notify(_ sender: UIButton) {
         let msg = meg.text ?? ""
-        del?.send(data: msg)
         let name = Notification.Name(rawValue: Constant.key)
         NotificationCenter.default.post(name:name, object:msg)
         dismiss(animated: true, completion: nil)
     }
-//    @IBAction func send(_ sender: UIButton) {
-//        let msg = meg.text ?? ""
-//        del?.send(data: msg)
-//        dismiss(animated: true, completion: nil)
-//        
-//    }
+    @IBAction func send(_ sender: UIButton) {
+        let msg = meg.text ?? ""
+        del?.sendDel(data: msg)
+        dismiss(animated: true, completion: nil)
+        
+    }
     @IBOutlet weak var meg: UITextField!
 
 }
